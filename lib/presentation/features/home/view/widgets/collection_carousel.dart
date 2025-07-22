@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/mocks/collection_products.dart';
+import 'package:flutter_application_1/domain/entities/collection_products.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-List<String> productsMock = ['Ana', 'João'];
 
 class CollectionCarousel extends StatelessWidget {
   const CollectionCarousel({super.key});
@@ -57,7 +57,7 @@ class CollectionList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: productsMock.length,
         itemBuilder: (context, index) {
-          return CollectionCard(index: index);
+          return CollectionCard(product: productsMock[index]);
         },
       ),
     );
@@ -65,9 +65,9 @@ class CollectionList extends StatelessWidget {
 }
 
 class CollectionCard extends StatelessWidget {
-  const CollectionCard({super.key, required this.index});
+  const CollectionCard({super.key, required this.product});
 
-  final int index;
+  final CollectionProductDTO product;
 
   @override
   Widget build(BuildContext context) {
@@ -79,10 +79,81 @@ class CollectionCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ImageCard(),
-            Text(productsMock[index]),
-            Text("Subtitle"),
-            Text("Price"),
+            SizedBox(height: 4),
+            Title(product: product),
+            Subtitle(product: product),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "\$",
+                  style: GoogleFonts.inter(
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: Text(
+                    product.price.toStringAsFixed(2),
+                    style: GoogleFonts.inter(
+                      textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class Subtitle extends StatelessWidget {
+  const Subtitle({super.key, required this.product});
+
+  final CollectionProductDTO product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      product.productSubtitle,
+      style: GoogleFonts.inter(
+        textStyle: const TextStyle(
+          color: Color.fromARGB(255, 97, 97, 97),
+          fontWeight: FontWeight.w500,
+          fontSize: 13,
+        ),
+      ),
+    );
+  }
+}
+
+class Title extends StatelessWidget {
+  const Title({super.key, required this.product});
+
+  final CollectionProductDTO product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Text(
+        product.productTitle,
+        style: GoogleFonts.inter(
+          textStyle: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+            fontSize: 15,
+          ),
         ),
       ),
     );
