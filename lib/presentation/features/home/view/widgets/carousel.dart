@@ -9,7 +9,7 @@ class Carousel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: SizedBox(
-        height: 180,
+        height: 200,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[

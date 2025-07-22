@@ -12,10 +12,20 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [Header(), Carousel(), CollectionCarousel(), BannerHome()],
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 20.0,
+              ),
+              child: Column(
+                children: [
+                  Header(),
+                  Carousel(),
+                  CollectionCarousel(),
+                  BannerHome(),
+                ],
+              ),
             ),
           ),
         ),

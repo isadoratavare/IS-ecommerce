@@ -34,10 +34,10 @@ class CollectionName extends StatelessWidget {
             name,
             style: GoogleFonts.inter(
               textStyle: const TextStyle(
-                color: Color.fromARGB(255, 85, 87, 87),
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
               ),
-              fontSize: 20.0,
-              fontWeight: FontWeight.w600,
             ),
           ),
         ),

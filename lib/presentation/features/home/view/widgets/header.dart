@@ -7,16 +7,19 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [UserName(), WelcomeTitle()],
-        ),
-
-        MiniCart(itemsCount: '2'),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [UserName(), WelcomeTitle()],
+          ),
+      
+          MiniCart(itemsCount: '2'),
+        ],
+      ),
     );
   }
 }
